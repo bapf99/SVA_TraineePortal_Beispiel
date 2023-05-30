@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using SVA_TraineePortal.Models;
+using SVA_TraineePortal.Models.Contexts;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddDbContext<CompanyLocationContext>(opt =>
+    opt.UseInMemoryDatabase("TraineePortal"));
+builder.Services.AddDbContext<LocationDepartmentContext>(opt =>
     opt.UseInMemoryDatabase("TraineePortal"));
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

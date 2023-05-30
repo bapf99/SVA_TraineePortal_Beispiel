@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SVA_TraineePortal.Models;
+using SVA_TraineePortal.Models.Contexts;
 using SVA_TraineePortal.Models.DTO;
 
 namespace SVA_TraineePortal.Controllers
@@ -45,7 +46,7 @@ namespace SVA_TraineePortal.Controllers
                 return NotFound();
             }
 
-            Console.WriteLine($"Got: {companyLocation}, {id}");
+            Console.WriteLine($"Got CompanyLocation: {companyLocation}, {id}");
 
             return LocationToDTO(companyLocation);
         }
@@ -80,7 +81,7 @@ namespace SVA_TraineePortal.Controllers
                 return NotFound();
             }
 
-            Console.WriteLine($"Put: {companyLocation}");
+            Console.WriteLine($"Put CompanyLocation: {companyLocation}");
 
             return NoContent();
         }
@@ -99,9 +100,9 @@ namespace SVA_TraineePortal.Controllers
             _context.CompanyLocations.Add(companyLocation);
             await _context.SaveChangesAsync();
 
-            Console.WriteLine($"Created: {companyLocation}");
+            Console.WriteLine($"Created CompanyLocation: {companyLocation}");
 
-            return CreatedAtAction(nameof(GetCompanyLocation), new { id = companyLocation.Id }, companyLocation);
+            return CreatedAtAction(nameof(GetCompanyLocation), new { id = companyLocation.Id }, LocationToDTO(companyLocation));
         }
 
         // DELETE: api/CompanyLocations/5
@@ -121,7 +122,7 @@ namespace SVA_TraineePortal.Controllers
             _context.CompanyLocations.Remove(companyLocation);
             await _context.SaveChangesAsync();
 
-            Console.WriteLine($"Deleted: {companyLocation}");
+            Console.WriteLine($"Deleted CompanyLocation: {companyLocation}");
 
             return NoContent();
         }

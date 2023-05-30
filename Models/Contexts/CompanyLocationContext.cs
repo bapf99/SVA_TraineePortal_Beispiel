@@ -2,7 +2,7 @@
 using System.Diagnostics.CodeAnalysis;
 using SVA_TraineePortal.Models.DTO;
 
-namespace SVA_TraineePortal.Models
+namespace SVA_TraineePortal.Models.Contexts
 {
     public class CompanyLocationContext : DbContext
     {
